@@ -1,0 +1,39 @@
+[
+  {
+
+    "name":"Catedral de giron",
+    "description":"la catedral mas antigua en la zona",
+    "points":"Puntos: 3",
+    "image": "https://cdn.pixabay.com/photo/2017/08/15/14/46/cathedral-2644200_1280.jpg"
+  },
+  {
+    "name":"Parque los niños",
+    "description":"uno de los parque emblematicos de la ciudad",
+    "points":"Puntos: 2",
+    "image": "https://cdn.pixabay.com/photo/2021/10/07/15/24/park-6688951_960_720.jpg"
+  },
+  {
+    "name":"Parque san pio",
+    "description":"Este parque con la escultura de botero se...",
+    "points":"Puntos: 4",
+    "image": "https://cdn.pixabay.com/photo/2018/08/27/23/52/church-3636280_1280.jpg"
+  },
+  {
+    "name":"Casa de Bolivar",
+    "description":"se encuentra ubicada en el centro de la ciudad...",
+    "points":"Puntos: 3",
+    "image": "https://cdn.pixabay.com/photo/2019/09/20/14/23/bogota-4491750_1280.jpg"
+  },
+  {
+    "name":"Cerro Santisimo",
+    "description":"Ubicado en el municipo de floridablanca es un de los sitios mas ...",
+    "points":"Puntos: 5",
+    "image": "https://cdn.pixabay.com/photo/2021/03/25/21/00/santander-6124191_1280.jpg"
+  },
+  {
+    "name":"Parque Chicamocha",
+    "description":"Ubicado junto al cañol de chicamocha...",
+    "points":"Puntos: 5",
+    "image": "https://cdn.pixabay.com/photo/2015/02/12/21/12/chicamocha-634310_1280.jpg"
+  }
+]

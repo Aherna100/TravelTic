@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Adavi/Documents/RecyclerView/app/src/main/res/layout/activity_detail.xml" value="0.14375" />
+        <entry key="..\:/Adavi/Documents/RecyclerView/app/src/main/res/layout/activity_detail.xml" value="0.264" />
+        <entry key="..\:/Adavi/Documents/RecyclerView/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Adavi/Documents/RecyclerView/app/src/main/res/layout/contact_list_item.xml" value="0.536" />
+        <entry key="..\:/Adavi/Documents/RecyclerView/app/src/main/res/menu/action_bar.xml" value="0.264" />
+        <entry key="..\:/Adavi/Documents/RecyclerView/app/src/main/res/xml/settings.xml" value="0.14375" />
         <entry key="..\:/Users/Adavi/Documents/GitHub/AndroidExamplesKotlin/RecyclerView/app/src/main/res/layout/activity_detail.xml" value="0.2" />
         <entry key="..\:/Users/Adavi/Documents/GitHub/AndroidExamplesKotlin/RecyclerView/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Adavi/Documents/GitHub/AndroidExamplesKotlin/RecyclerView/app/src/main/res/layout/contact_list_item.xml" value="0.6" />

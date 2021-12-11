@@ -7,10 +7,17 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
+import android.widget.RatingBar
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import java.io.IOException
 import java.util.ArrayList
 import org.json.JSONArray
@@ -22,6 +29,8 @@ class ListActivity : AppCompatActivity() {
     private lateinit var mAdapter: ContactAdapter
     private lateinit var recycler: RecyclerView
 
+    private val URLstring = "https://61b146b43c954f001722a87d.mockapi.io/mocktest"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,7 +41,9 @@ class ListActivity : AppCompatActivity() {
 
         recycler = findViewById(R.id.contact_list)
         setupRecyclerView()
-        initDataFromFile()
+        //initDataFromFile()
+        requestJson()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -81,11 +92,8 @@ class ListActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun navigateToPreferences(){
-
-    }
-
     private fun initDataFromFile() {
+
         val contactsString = readContactJsonFile()
         try {
             val contactsJson = JSONArray(contactsString)
@@ -109,11 +117,46 @@ class ListActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Reads a file from the assets directory and returns it as a string.
-     *
-     * @return The resulting string.
-     */
+
+    private fun requestJson(){
+        val stringRequest = StringRequest(Request.Method.GET, URLstring,
+            { response ->
+                Log.d("strrrrr", ">>$response")
+
+                try {
+                    val stringObj = JSONArray(response)
+
+                    for (i in 0 until stringObj.length()) {
+
+                        val contactJson = stringObj.getJSONObject(i)
+
+                        val contact = Contact(
+                            contactJson.getString("name"),
+                            contactJson.getString("description"),
+                            contactJson.getString("points"),
+                            contactJson.getString("image")
+                        )
+                        Log.d(TAG, "generateContacts: $contact")
+                        mContacts.add(contact)
+
+                    }
+
+                    mAdapter.notifyDataSetChanged()
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            },
+            { error ->
+                //displaying the error in toast if occurrs
+                Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
+            })
+
+        val requestQueue = Volley.newRequestQueue(this)
+
+        requestQueue.add(stringRequest)
+    }
+
     private fun readContactJsonFile(): String? {
         var contactsString: String? = null
         try {

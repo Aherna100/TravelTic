@@ -26,15 +26,14 @@
         android:id="@+id/imageview_thumb"
         android:layout_width="@dimen/thumbnail_size"
         android:layout_height="@dimen/thumbnail_size"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/contact_thumb"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_person"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_person"
         tools:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -56,16 +55,16 @@
         android:id="@+id/textview_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/textview_email"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/imageview_thumb"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.49"
         tools:text="Contact Name" />
 
     <TextView
@@ -82,6 +81,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/imageview_thumb"
         app:layout_constraintTop_toBottomOf="@+id/textview_name" />
+
+    <RatingBar
+        android:id="@+id/ratingBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="13dp"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/textview_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageview_thumb"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

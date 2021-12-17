@@ -7,7 +7,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -15,13 +14,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import java.io.IOException
 import java.util.ArrayList
 import org.json.JSONArray
 import org.json.JSONException
+import org.json.JSONObject
 
 class ListActivity : AppCompatActivity() {
 
@@ -29,7 +28,7 @@ class ListActivity : AppCompatActivity() {
     private lateinit var mAdapter: ContactAdapter
     private lateinit var recycler: RecyclerView
 
-    private val URLstring = "https://61b146b43c954f001722a87d.mockapi.io/mocktest"
+    private val URLstring = "https://my-json-server.typicode.com/Aherna100/json/db"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,10 +87,14 @@ class ListActivity : AppCompatActivity() {
             putExtra(KEY_DESCRIPTION, contact.description)
             putExtra(KEY_POINTS, contact.points)
             putExtra(KEY_FOTO, contact.image)
+            putExtra(KEY_INFO, contact.info)
+            putExtra(KEY_TEMPERATURE, contact.temperature)
+            putExtra(KEY_LOCATION, contact.location)
         }
         startActivity(intent)
     }
 
+    /*
     private fun initDataFromFile() {
 
         val contactsString = readContactJsonFile()
@@ -116,7 +119,7 @@ class ListActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-
+*/
 
     private fun requestJson(){
         val stringRequest = StringRequest(Request.Method.GET, URLstring,
@@ -124,17 +127,22 @@ class ListActivity : AppCompatActivity() {
                 Log.d("strrrrr", ">>$response")
 
                 try {
-                    val stringObj = JSONArray(response)
+                    val stringObj = JSONObject(response)
 
-                    for (i in 0 until stringObj.length()) {
+                    val dataList = stringObj.getJSONArray("ciudades")
 
-                        val contactJson = stringObj.getJSONObject(i)
+                    for (i in 0 until dataList.length()) {
+
+                        val contactJson = dataList.getJSONObject(i)
 
                         val contact = Contact(
                             contactJson.getString("name"),
                             contactJson.getString("description"),
                             contactJson.getString("points"),
-                            contactJson.getString("image")
+                            contactJson.getString("image"),
+                            contactJson.getString("location"),
+                            contactJson.getString("temperature"),
+                            contactJson.getString("info")
                         )
                         Log.d(TAG, "generateContacts: $contact")
                         mContacts.add(contact)
@@ -180,5 +188,8 @@ class ListActivity : AppCompatActivity() {
         const val KEY_DESCRIPTION = "contact_extra_description"
         const val KEY_POINTS = "contact_points"
         const val KEY_FOTO = "contact_foto"
+        const val KEY_LOCATION = "contact_location"
+        const val KEY_TEMPERATURE = "contact_temperature"
+        const val KEY_INFO = "contact_info"
     }
 }

@@ -16,8 +16,6 @@ import kotlin.random.Random
 
 class DetailActivity : AppCompatActivity() {
 
-    private lateinit var ratingText: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -26,9 +24,11 @@ class DetailActivity : AppCompatActivity() {
         createRatingBar()
 
         val name = intent.getStringExtra(ListActivity.KEY_NAME)
-        val description = intent.getStringExtra(ListActivity.KEY_DESCRIPTION)
-        val points = intent.getStringExtra(ListActivity.KEY_POINTS)
+        val description = intent.getStringExtra(ListActivity.KEY_INFO)
+        //val points = intent.getStringExtra(ListActivity.KEY_POINTS)
         val image = intent.getStringExtra(ListActivity.KEY_FOTO)
+        val temp = intent.getStringExtra(ListActivity.KEY_TEMPERATURE)
+        val location = intent.getStringExtra(ListActivity.KEY_LOCATION)
 
         val textView = findViewById<TextView>(R.id.textView3).apply { text = name }
         val imageView = findViewById<ImageView>(R.id.imageView2).apply {
@@ -37,22 +37,33 @@ class DetailActivity : AppCompatActivity() {
                 .into(this)
         }
         val textView1 = findViewById<TextView>(R.id.textView4).apply { text = description }
+        val textView2 = findViewById<TextView>(R.id.textView2).apply { text = temp }
+        val textView3 = findViewById<TextView>(R.id.textView).apply { text = location }
 
     }
 
     private fun createRatingBar() {
         val root: ConstraintLayout = findViewById(R.id.constraintS)
 
+        val points = intent.getStringExtra(ListActivity.KEY_POINTS)
+
+        val strgs: String? = points.toString()
+        val flts: Float? = strgs?.toFloat()
+
         val ratingBar: RatingBar = RatingBar(this).apply {
             setIsIndicator(true)
             numStars = 5
             stepSize = 1.0f
-            rating = 2.0f
+            if (flts != null) {
+                rating = flts
+            }
+            //rating = randomBetweenOneAndFive()
             max = 5
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { gravity = Gravity.CENTER }
+
+            layoutParams = ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            )
         }
 
         val ratingBarIndexInLayout = 3

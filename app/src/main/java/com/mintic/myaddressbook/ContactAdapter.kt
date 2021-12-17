@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import java.util.ArrayList
+import kotlin.random.Random
 
 
 class ContactAdapter(
@@ -36,7 +37,7 @@ class ContactAdapter(
     inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var nameLabel: TextView = itemView.findViewById(R.id.textview_name)
         private var descriptionlabel: TextView = itemView.findViewById(R.id.textview_email)
-        private var pointsLabel: TextView = itemView.findViewById(R.id.textview_points)
+        //private var pointsLabel: TextView = itemView.findViewById(R.id.textview_points)
         private var imageView: ImageView = itemView.findViewById(R.id.imageview_thumb)
         private var currentContact: Contact? = null
 
@@ -51,13 +52,15 @@ class ContactAdapter(
 
             nameLabel.text = contact.name
             descriptionlabel.text = contact.description
-            pointsLabel.text = contact.points
+            //pointsLabel.text = contact.points
 
             Glide.with(context)
                 .load(contact.image)
                 .into(imageView)
         }
     }
+
+    private fun randomBetweenOneAndFive() = Random.nextInt(1, 5).toFloat()
 
     companion object {
         private const val TAG = "ContactAdapter"

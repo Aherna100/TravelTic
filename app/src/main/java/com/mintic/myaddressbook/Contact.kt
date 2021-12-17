@@ -8,5 +8,8 @@ data class Contact(
     val name: String,
     val description: String,
     val points: String,
-    val image: String
+    val image: String,
+    val location: String,
+    val temperature: String,
+    val info: String
 ) :Parcelable
